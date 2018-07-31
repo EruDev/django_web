@@ -19,7 +19,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # 断言网页标题有 To-Do
         self.assertIn('To-Do', self.browser.title)
-        header_text = self.browser.find_element_by_tag_name('h1')
+        header_text = self.browser.find_element_by_tag_name('h1').text
         self.assertIn('To-Do', header_text)
 
         # 输入一个待办事项
