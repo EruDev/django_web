@@ -3,6 +3,7 @@ from django.http import HttpRequest
 from django.template.loader import render_to_string
 from django.test import TestCase
 from .views import home_page
+from .models import Item
 
 # Create your tests here.
 
@@ -42,3 +43,21 @@ class HomePageTest(TestCase):
         self.assertEqual(response.content.decode(), expected_html)
 
 
+class ItemModelTest(TestCase):
+
+    def test_saving_and_retrieving_items(self):
+        first_item = Item()
+        first_item.text = 'The first (ever) list item'
+        first_item.save()
+
+        second_item = Item()
+        second_item.text = 'Item the second'
+        second_item.save()
+
+        save_items = Item.objects.all()
+        self.assertEqual(save_items.count(), 2)
+
+        save_items_first = save_items[0]
+        save_items_second = save_items[1]
+        self.assertEqual(save_items_first.text, 'The first (ever) list item')
+        self.assertEqual(save_items_second.text, 'Item the second')
