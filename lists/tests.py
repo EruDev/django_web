@@ -40,3 +40,5 @@ class HomePageTest(TestCase):
             {'new_item_text': 'A new list item'}
         )
         self.assertEqual(response.content.decode(), expected_html)
+
+
